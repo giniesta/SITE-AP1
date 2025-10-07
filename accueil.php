@@ -4,11 +4,11 @@
 
 <?php
 include 'elements/head.php';
-include 'elements/header.php';
 if (!isset($_SESSION["login"])) {
     header("location: connexion.php");
     exit();
 }
+include 'elements/header.php';
 ?>
 
 <body>

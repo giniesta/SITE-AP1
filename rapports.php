@@ -3,12 +3,13 @@
 <html lang="fr">
 <?php
 include 'elements/head.php';
-include 'elements/header.php';
-include 'bdd/bdd.php';
 if (!isset($_SESSION["login"])) {
     header("location: connexion.php");
     exit();
 }
+
+include 'elements/header.php';
+include 'bdd/bdd.php';
 ?>
 
 <body class="bg-gray-100">

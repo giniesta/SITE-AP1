@@ -35,19 +35,24 @@ if ($result) {
     $req->execute([
         'num' => $result['num']
     ]);
-    session_status() === PHP_SESSION_ACTIVE ?: session_start();
-    $_SESSION['num'] = $result['num'];
-    $_SESSION['nom'] = $result['nom'];
-    $_SESSION['prenom'] = $result['prenom'];
-    $_SESSION['email'] = $result['email'];
-    $_SESSION['login'] = $result['login'];
-    $_SESSION['type'] = $result['type'];
-    $_SESSION['usable'] = $result['usable'];
-    header("location: ../index.php");
-    writeLogLine(true, $_POST['login']);
+
+    if ($result['bloque'] == 1) {
+        header("location: ../connexion.php?message=blocked");
+    } else {
+        session_status() === PHP_SESSION_ACTIVE ?: session_start();
+        $_SESSION['num'] = $result['num'];
+        $_SESSION['nom'] = $result['nom'];
+        $_SESSION['prenom'] = $result['prenom'];
+        $_SESSION['email'] = $result['email'];
+        $_SESSION['login'] = $result['login'];
+        $_SESSION['type'] = $result['type'];
+        $_SESSION['usable'] = $result['usable'];
+        header("location: ../index.php");
+        writeLogLine(true, $_POST['login']);
+    }
     exit();
 } else {
-    header("location: ../connexion.php?message=Identifiant ou mot de passe incorrect");
+    header("location: ../connexion.php?message=login-error");
     writeLogLine(false, $_POST['login']);
     exit();
 }

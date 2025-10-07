@@ -2,6 +2,12 @@
 session_start();
 
 include 'elements/head.php';
+
+if (!isset($_SESSION["login"])) {
+    header("location: connexion.php");
+    exit();
+}
+
 include 'elements/header.php';
 include 'bdd/bdd.php';
 
