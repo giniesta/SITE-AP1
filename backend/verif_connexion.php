@@ -44,9 +44,11 @@ if ($result) {
         $_SESSION['nom'] = $result['nom'];
         $_SESSION['prenom'] = $result['prenom'];
         $_SESSION['email'] = $result['email'];
+        $_SESSION['tel'] = $result['tel'];
         $_SESSION['login'] = $result['login'];
         $_SESSION['type'] = $result['type'];
         $_SESSION['usable'] = $result['usable'];
+        $_SESSION['mdp'] = $result['motdepasse'];
         header("location: ../index.php");
         writeLogLine(true, $_POST['login']);
     }

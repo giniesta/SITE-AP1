@@ -13,14 +13,9 @@ if (
 $id = intval($_POST['id']);
 $num_utilisateur = $_SESSION['num'];
 
-// On supprime seulement si l'utilisateur est propri�taire ou admin
-if ($_SESSION["type"] == 1) {
-    $query = "DELETE FROM cr WHERE num = :id";
-    $params = ['id' => $id];
-} else {
-    $query = "DELETE FROM cr WHERE num = :id AND num_utilisateur = :num_utilisateur AND vu = 0";
-    $params = ['id' => $id, 'num_utilisateur' => $num_utilisateur];
-}
+$query = "DELETE FROM cr WHERE num = :id AND num_utilisateur = :num_utilisateur";
+$params = ['id' => $id, 'num_utilisateur' => $num_utilisateur];
+
 
 $stmt = $bdd->prepare($query);
 $ok = $stmt->execute($params);

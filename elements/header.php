@@ -13,17 +13,12 @@
             </a>
         </div>
 
-        <!-- Barre de recherche centrée -->
-        <div class="flex-1 flex justify-center">
-            <form action="#" role="search" class="inline-flex">
-                <input type="search" placeholder="Rechercher..." aria-label="Search"
-                    class="px-4 py-2 rounded-l-md border-none focus:outline-none text-gray-800" />
-                <button type="submit"
-                    class="px-4 py-2 bg-yellow-400 rounded-r-md font-bold text-gray-800 hover:bg-yellow-500 transition">
-                    Recherche
-                </button>
-            </form>
-        </div>
+        <?php
+            if ($_SESSION["type"] == 1) {
+                include 'elements/navProf.php';
+            } else {
+                include 'elements/nav.php';
+        } ?>
 
         <!-- Menu déroulant à droite, largeur identique au logo -->
         <div class="flex-shrink-0 min-w-[130px] flex justify-end">
@@ -35,9 +30,10 @@
                     </svg>
                 </button>
                 <ul id="menuDropdown" class="absolute right-0 z-10 mt-2 w-48 bg-white rounded shadow-lg hidden">
-                    <!-- <li>
-                        <a href="compte.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mon compte</a>
+                     <li>
+                        <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mon compte</a>
                     </li>
+                    <!--
                     <li>
                         <a href="parametres.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Paramètres</a>
                     </li> -->
@@ -64,10 +60,4 @@
             });
         </script>
     </div>
-    <?php
-    if ($_SESSION["type"] == 1) {
-        include 'elements/navProf.php';
-    } else {
-        include 'elements/nav.php';
-    } ?>
 </header>

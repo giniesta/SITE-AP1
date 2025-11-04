@@ -38,7 +38,7 @@ $count = count($results);
                         <span class="block text-sm"><?php echo $result["date"]; ?></span>
                     </div>
                     <?php
-                    if ($result["vu"] == 0 or $_SESSION["type"] == 1) { ?>
+                    if ($_SESSION["type"] == 0) { ?>
                         <div class="mt-2 md:mt-0 md:w-1/12 text-gray-600 text-center relative">
                             <button class="menu-rapport" data-id="<?php echo $result['num']; ?>"
                                 data-description="<?php echo htmlspecialchars($result['description'], ENT_QUOTES); ?>"
