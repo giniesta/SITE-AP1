@@ -29,6 +29,7 @@ $nom = $_POST['nom'] ? trim($_POST['nom']) : $_SESSION['nom'];
 $prenom = $_POST['prenom'] ? trim($_POST['prenom']) : $_SESSION['prenom']; 
 $email = $_POST['email'] ? trim($_POST['email']) : $_SESSION['email']; 
 $tel = $_POST['tel'] ? trim($_POST['tel']) : $_SESSION['tel']; 
+$adresse = $_POST['adresse'] ? trim($_POST['adresse']) : $_SESSION['adresse']; 
 $login = strtolower(mb_substr($prenom, 0, 1) . strtok($nom, " "));
 $num_utilisateur = $_SESSION['num'];
 
@@ -40,7 +41,7 @@ if ($_POST["mdp"] != $_POST["mdpre"]) {
 
 $mdp = trim($_POST['mdp']);
 
-$query = "UPDATE utilisateur SET nom=:nom, prenom=:prenom, tel=:tel, login=:login, email=:email, motdepasse=:motdepasse WHERE num=:num_utilisateur";
+$query = "UPDATE utilisateur SET nom=:nom, prenom=:prenom, tel=:tel, login=:login, email=:email, motdepasse=:motdepasse, adresse=:adresse WHERE num=:num_utilisateur";
 $params = [
     'nom' => $nom,
     'prenom' => $prenom,
@@ -48,6 +49,7 @@ $params = [
     'tel' => $tel,
     'login' => $login,
     'motdepasse' => $_POST['mdp'] ? hash('sha256', $_POST['mdp']) : $_SESSION['mdp'],
+    'adresse' => $adresse,
     'num_utilisateur' => $num_utilisateur
 ];
 
@@ -61,6 +63,7 @@ if ($ok) {
     $_SESSION['email'] = $email;
     $_SESSION['tel'] = $tel;
     $_SESSION['login'] = $login;
+    $_SESSION['adresse'] = $adresse;
     header("location: ../profile.php");
     exit();
 } else {

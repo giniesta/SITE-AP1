@@ -49,7 +49,13 @@ if ($result) {
         $_SESSION['type'] = $result['type'];
         $_SESSION['usable'] = $result['usable'];
         $_SESSION['mdp'] = $result['motdepasse'];
-        header("location: ../index.php");
+        $_SESSION['adresse'] = $result['adresse'];
+
+        if ($result['adresse'] == '' && $result['type'] == 0) {
+            header("location: ../index.php?message=address-not-set");
+        } else {            
+            header("location: ../index.php");
+        }
         writeLogLine(true, $_POST['login']);
     }
     exit();
