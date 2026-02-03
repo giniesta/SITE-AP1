@@ -6,7 +6,8 @@ if (
     !isset($_SESSION['num']) ||
     empty($_POST['id']) ||
     empty($_POST['description']) ||
-    empty($_POST['date_rapport']) 
+    empty($_POST['date_rapport']) ||
+    empty($_POST['note_rapport']) 
 ) {
     http_response_code(400);
     exit();
@@ -15,12 +16,14 @@ if (
 $id = intval($_POST['id']);
 $description = trim($_POST['description']);
 $date_rapport = $_POST['date_rapport'];
+$note_rapport = $_POST['note_rapport'];
 $num_utilisateur = $_SESSION['num'];
 
-$query = "UPDATE cr SET description=:description, date=:date_rapport WHERE num=:id AND num_utilisateur=:num_utilisateur";
+$query = "UPDATE cr SET description=:description, date=:date_rapport, note=:note_rapport WHERE num=:id AND num_utilisateur=:num_utilisateur";
 $params = [
     'description' => $description,
     'date_rapport' => $date_rapport,
+    'note_rapport' => $note_rapport,
     'id' => $id,
     'num_utilisateur' => $num_utilisateur
 ];

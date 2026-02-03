@@ -5,7 +5,8 @@ include '../bdd/bdd.php';
 if (
     !isset($_SESSION['num']) ||
     empty($_POST['description']) ||
-    empty($_POST['date_rapport']) 
+    empty($_POST['date_rapport']) ||
+    empty($_POST['note_rapport'])
 ) {
     http_response_code(400);
     exit();
@@ -13,6 +14,7 @@ if (
 
 $description = trim($_POST['description']);
 $date_rapport = $_POST['date_rapport'];
+$note_rapport = $_POST['note_rapport'];
 $num_utilisateur = $_SESSION['num'];
 
 // Récupérer l'id du stage de l'élève connecté
@@ -26,12 +28,13 @@ if (!$num_stage) {
     exit();
 }
 
-$query = "INSERT INTO cr (description, date, num_utilisateur, num_stage, datetime, vu)
-          VALUES (:description, :date_rapport, :num_utilisateur, :num_stage, NOW(), 0)";
+$query = "INSERT INTO cr (description, date, note, num_utilisateur, num_stage, datetime)
+          VALUES (:description, :date_rapport, :note_rapport, :num_utilisateur, :num_stage, NOW())";
 $stmt = $bdd->prepare($query);
 $ok = $stmt->execute([
     'description' => $description,
     'date_rapport' => $date_rapport,
+    'note_rapport' => $note_rapport,
     'num_utilisateur' => $num_utilisateur,
     'num_stage' => $num_stage
 ]);

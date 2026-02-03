@@ -53,6 +53,10 @@ include 'bdd/bdd.php';
                     <label class="block mb-1">Date du rapport</label>
                     <input type="date" name="date_rapport" required class="w-full border rounded p-2" />
                 </div>
+                <div class="mb-4">
+                    <label class="block mb-1">Note du rapport</label>
+                    <input type="number" name="note_rapport" min="0" max="5" step="1" required class="w-full border rounded p-2"/>
+                </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Envoyer</button>
                 <button type="button" id="closeRapportForm" class="ml-2 text-gray-600">Annuler</button>
             </form>

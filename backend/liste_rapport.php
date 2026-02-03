@@ -20,7 +20,7 @@ $count = count($results);
     if ($results) {
         foreach ($results as $result) {
     ?>
-            <div class="bg-white rounded-lg shadow transition hover:shadow-lg p-4 mb-4 border-l-4 border-blue-500">
+            <div class="bg-white rounded-lg shadow transition hover:shadow-lg p-4 mb-4 border-l-4 <?php if ($result["note"] == 0 && $_SESSION["type"] == 1) { echo 'border-red-500';} elseif ($result["note"] == 5 && $_SESSION["type"] == 1) { echo 'border-green-500'; } else { echo 'border-blue-500'; } ?>">
                 <div class="flex flex-col md:flex-row md:items-center">
                     <div class="md:w-9/12">
                         <h5 class="text-lg font-semibold">
@@ -30,12 +30,12 @@ $count = count($results);
                         </h5>
                     </div>
                     <div class="mt-2 md:mt-0 md:w-1/12 text-gray-600 text-center">
-                        <i class="ion-ios-eye-outline text-xl"></i>
-                        <span class="block text-sm"><?php echo $result["vu"]; ?></span>
-                    </div>
-                    <div class="mt-2 md:mt-0 md:w-1/12 text-gray-600 text-center">
                         <i class="ion-ios-calendar-outline text-xl"></i>
                         <span class="block text-sm"><?php echo $result["date"]; ?></span>
+                    </div>
+                    <div class="mt-2 md:mt-0 md:w-1/12 text-gray-600 text-center">
+                        <i class="ion-ios-star text-xl"></i>
+                        <span class="block text-sm"><?php echo $result["note"]; ?>/5</span>
                     </div>
                     <?php
                     if ($_SESSION["type"] == 0) { ?>
@@ -43,7 +43,7 @@ $count = count($results);
                             <button class="menu-rapport" data-id="<?php echo $result['num']; ?>"
                                 data-description="<?php echo htmlspecialchars($result['description'], ENT_QUOTES); ?>"
                                 data-date="<?php echo $result['date']; ?>"
-                                data-contenu="<?php echo htmlspecialchars($result['contenu'], ENT_QUOTES); ?>"
+                                data-note="<?php echo htmlspecialchars($result['note'], ENT_QUOTES); ?>"
                                 title="Actions">
                                 <i class="ion-more text-2xl"></i>
                             </button>
@@ -52,7 +52,7 @@ $count = count($results);
                                     data-id="<?php echo $result['num']; ?>"
                                     data-description="<?php echo htmlspecialchars($result['description'], ENT_QUOTES); ?>"
                                     data-date="<?php echo $result['date']; ?>"
-                                    data-contenu="<?php echo htmlspecialchars($result['contenu'], ENT_QUOTES); ?>">
+                                    data-note="<?php echo htmlspecialchars($result['note'], ENT_QUOTES); ?>">
                                     Modifier
                                 </button>
                                 <button class="delete-rapport w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"

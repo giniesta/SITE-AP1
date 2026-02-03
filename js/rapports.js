@@ -59,7 +59,7 @@ function activerEditionRapport() {
             form.setAttribute('data-id', this.getAttribute('data-id'));
             form.querySelector('[name="description"]').value = this.getAttribute('data-description');
             form.querySelector('[name="date_rapport"]').value = this.getAttribute('data-date');
-            form.querySelector('[name="contenu"]').value = this.getAttribute('data-contenu');
+            form.querySelector('[name="note_rapport"]').value = this.getAttribute('data-note');
         };
     });
 }
