@@ -21,7 +21,7 @@ include 'bdd/bdd.php';
                     </h2>
                 </div>
                 <div class="p-6">
-                    <h4 class="text-center text-xl font-semibold uppercase text-gray-600 mb-4">Informations du profile :
+                    <h4 class="text-center text-xl font-semibold uppercase text-gray-600 mb-4">Informations du profil :
                     </h4>
                     <ul class="space-y-2">                
                         <div class="formulaire">
